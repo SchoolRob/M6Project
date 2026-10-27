@@ -20,7 +20,10 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String password;
+    private String salt;
+
+    @Column(nullable = false)
+    private String passwordHash;
 
     @ManyToMany(mappedBy = "users")
     private Set<Task> tasks;
@@ -28,10 +31,6 @@ public class User {
     // Constructors
     public User() {}
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
     // Getters & setters
     public Integer getId() { return id; }
@@ -40,8 +39,11 @@ public class User {
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String getSalt() { return salt; }
+    public void setSalt(String salt) { this.salt = salt; }
+
+    public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
 
     public Set<Task> getTasks() { return tasks; }
     public void setTasks(Set<Task> tasks) { this.tasks = tasks; }

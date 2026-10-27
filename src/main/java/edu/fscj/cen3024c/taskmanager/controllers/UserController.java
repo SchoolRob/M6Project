@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     // ===== READ endpoints return DTOs =====
-
+    @CrossOrigin(origins = {"http://example.com", "http://localhost"})
     @GetMapping
     public List<UserDTO> getAllUsers() {
         return userService.findAll();
